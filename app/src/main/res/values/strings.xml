@@ -1,0 +1,28 @@
+<!--
+  ~ Copyright 2019 Gotelz Enterprise. All rights reserved.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">InstaPoint</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="coordinateHint">- - . - - - - - -</string>
+    <string name="startBtnText">Get Point</string>
+    <string name="stopBtnText">Stop</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="accuracyHint">n/a</string>
+    <string name="altitude">Altitude</string>
+    <string name="altitudeHint">n/a</string>
+    <string name="time">Time</string>
+    <string name="logo_desc">InstaPoint Logo</string>
+    <string name="copyright">Copyrightⓒ 2019 Gotelz Enterprise</string>
+</resources>
