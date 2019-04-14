@@ -24,22 +24,19 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="32dp"
         android:text="@string/longitude"
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/guidelineH"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImageView"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintTop_toBottomOf="@+id/logoImageView" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/latitude"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -51,7 +48,7 @@
         android:id="@+id/longitudeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/coordinateHint"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
@@ -64,7 +61,7 @@
         android:id="@+id/latitudeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/coordinateHint"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
@@ -73,30 +70,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView" />
 
+    <TextView
+        android:id="@+id/altitudeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/altitude"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/latitudeTextView" />
+
+    <TextView
+        android:id="@+id/altitudeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="@string/altitudeHint"
+        android:textColor="@color/colorPrimaryVariant"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/altitudeTextView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/accuracy"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/altitudeValue" />
+
+    <TextView
+        android:id="@+id/accuracyValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="@string/accuracyHint"
+        android:textColor="@color/colorPrimaryVariant"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
     <Button
         android:id="@+id/getBtn"
         android:layout_width="124dp"
-        android:layout_height="56dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="?attr/colorPrimary"
         android:text="@string/startBtnText"
-        android:backgroundTint="?attr/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guidelineV"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guidelineH"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <Button
-        android:id="@+id/stopBtn"
-        android:layout_width="124dp"
-        android:layout_height="56dp"
-        android:text="@string/stopBtnText"
+        app:cornerRadius="62dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="@id/guidelineV"
-        app:layout_constraintTop_toTopOf="@id/guidelineH"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accuracyValue"
+        app:layout_constraintVertical_bias="0.32" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineH"
@@ -105,34 +137,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="@string/accuracy"
-        app:layout_constraintBottom_toTopOf="@+id/getBtn"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineV"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/accuracyValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/accuracyHint"
-        android:textColor="@color/colorPrimaryVariant"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="@+id/guidelineV" />
 
     <TextView
         android:id="@+id/textView4"
@@ -151,34 +155,28 @@
         android:id="@+id/logoImageView"
         android:layout_width="232dp"
         android:layout_height="102dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/logo_desc"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.050000012"
         app:srcCompat="@drawable/logo_whitebg" />
 
-    <TextView
-        android:id="@+id/altitudeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/altitude"
-        app:layout_constraintTop_toBottomOf="@id/latitudeTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/altitudeValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/altitudeHint"
-        android:textColor="@color/colorPrimaryVariant"
-        app:layout_constraintTop_toBottomOf="@id/altitudeTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageButton
+        android:id="@+id/cancelBtn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="32dp"
+        android:background="#00000000"
+        android:scaleType="centerCrop"
+        android:tint="?attr/colorError"
+        app:layout_constraintBottom_toBottomOf="@id/getBtn"
+        app:layout_constraintLeft_toRightOf="@id/getBtn"
+        app:layout_constraintTop_toTopOf="@id/getBtn"
+        app:srcCompat="@drawable/ic_round_cancel_24px" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

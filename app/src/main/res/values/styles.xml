@@ -37,4 +37,8 @@
     <style name="AppButton" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">?attr/colorSecondary</item>
     </style>
+
+    <style name="AppTheme.RoundedButton" parent="Widget.MaterialComponents.Button" >
+        <item name="android:background">@drawable/rounded_shape</item>
+    </style>
 </resources>

@@ -28,9 +28,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AlertDialog
 import android.util.Log
+import android.util.TypedValue
+import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.ColorInt
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.w3c.dom.Text
@@ -49,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var getBtn: Button
     private lateinit var longText: TextView
     private lateinit var latiText: TextView
-    private lateinit var stopBtn: Button
+    private lateinit var stopBtn: ImageButton
     private lateinit var accuracyVal: TextView
     private lateinit var altitudeVal: TextView
 
@@ -60,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         mLocationRequest = LocationRequest()
 
         getBtn = findViewById(R.id.getBtn)
-        stopBtn = findViewById(R.id.stopBtn)
+        stopBtn = findViewById(R.id.cancelBtn)
         longText = findViewById(R.id.longitudeTextView)
         latiText = findViewById(R.id.latitudeTextView)
         accuracyVal = findViewById(R.id.accuracyValue)
         altitudeVal = findViewById(R.id.altitudeValue)
 
-        stopBtn.isEnabled = false
+        stopBtn.visibility = View.INVISIBLE
 
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -77,14 +81,13 @@ class MainActivity : AppCompatActivity() {
             if (checkPermissionForLocation(this)) {
                 startLocationUpdates()
                 getBtn.isEnabled = false
-                stopBtn.isEnabled = true
+                stopBtn.visibility = View.VISIBLE
+                getBtn.text = "Retrieving Signal ..."
             }
         }
 
         stopBtn.setOnClickListener {
             stopLocationUpdates()
-            getBtn.isEnabled = true
-            stopBtn.isEnabled = false
         }
 
     }
@@ -136,15 +139,39 @@ class MainActivity : AppCompatActivity() {
 
     fun onLocationChanged(location: Location) {
         mLastLocation = location
+        val accuracy = mLastLocation.accuracy
         latiText.text = mLastLocation.latitude.toString()
         longText.text = mLastLocation.longitude.toString()
         if (mLastLocation.hasAltitude()) {
-            accuracyVal.text = String.format("%.3f", mLastLocation.accuracy) + " m"
+            val altitude = mLastLocation.altitude
+            altitudeVal.text = String.format("%.2f", altitude) + " m"
         }
-        altitudeVal.text = String.format("%.3f", mLastLocation.altitude) + " m"
-        if (mLastLocation.accuracy < 2) {
+        accuracyVal.text = String.format("%.2f", accuracy) + " m"
+
+
+        if (accuracy <= 3) {
             stopLocationUpdates()
+        } else if (accuracy > 3 && accuracy <= 5) {
+            accuracyVal.setTextColor(getColorFromAttr(R.attr.colorPrimaryVariant))
+            altitudeVal.setTextColor(getColorFromAttr(R.attr.colorPrimaryVariant))
+            latitudeTextView.setTextColor(getColorFromAttr(R.attr.colorPrimaryVariant))
+            longitudeTextView.setTextColor(getColorFromAttr(R.attr.colorPrimaryVariant))
+        } else {
+            accuracyVal.setTextColor(getColorFromAttr(R.attr.colorSecondaryVariant))
+            altitudeVal.setTextColor(getColorFromAttr(R.attr.colorSecondaryVariant))
+            latitudeTextView.setTextColor(getColorFromAttr(R.attr.colorSecondaryVariant))
+            longitudeTextView.setTextColor(getColorFromAttr(R.attr.colorSecondaryVariant))
         }
+
+    }
+
+    fun Context.getColorFromAttr(
+        attrColor: Int,
+        typedValue: TypedValue = TypedValue(),
+        resolveRefs: Boolean = true
+    ): Int {
+        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+        return typedValue.data
     }
 
     protected fun startLocationUpdates() {
@@ -172,7 +199,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun stopLocationUpdates() {
         mFusedLocationProviderClient!!.removeLocationUpdates(mLocationCallback)
+        getBtn.isEnabled = true
+        stopBtn.visibility = View.INVISIBLE
+        getBtn.text = "Get Point"
     }
+
+
 
 //    private fun checkPermission(vararg perm:String) : Boolean {
 //        val havePermission = perm.toList().all {
